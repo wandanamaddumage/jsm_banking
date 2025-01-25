@@ -54,3 +54,5 @@ export async function getLoggedInUser() {
     return null;
   }
 }
+
+export const logoutAccount = async () => {};
