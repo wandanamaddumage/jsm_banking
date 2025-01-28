@@ -8,11 +8,18 @@ import { parseStringify } from "../utils";
 export const signIn = async ({ email, password }: signInProps) => {
   try {
     const { account } = await createAdminClient();
+    console.log("Attempting to log in with email:", email);
     const response = await account.createEmailPasswordSession(email, password);
-
+    console.log("Login successful:", response);
     return parseStringify(response);
   } catch (error) {
     console.error("Error", error);
+    console.log("Email:", email);
+    console.log("Password:", password);
+    console.error("Login failed with error:", error);
+    throw new Error(
+      "Invalid credentials. Please check the email and password."
+    );
   }
 };
 
@@ -58,7 +65,9 @@ export async function getLoggedInUser() {
 export const logoutAccount = async () => {
   try {
     const { account } = await createSessionClient();
-    (await cookies()).delete("appwrite-sesstion");
+
+    (await cookies()).delete("appwrite-session");
+
     await account.deleteSession("current");
   } catch (error) {
     return null;
