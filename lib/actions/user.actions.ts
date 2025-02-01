@@ -73,3 +73,8 @@ export const logoutAccount = async () => {
     return null;
   }
 };
+
+export const createLinkToken = async (user: User) => {
+  try {
+  } catch (error) {}
+};
