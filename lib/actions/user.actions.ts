@@ -52,8 +52,6 @@ export const signUp = async (userData: SignUpParams) => {
   }
 };
 
-// ... your initilization functions
-
 export async function getLoggedInUser() {
   try {
     const { account } = await createSessionClient();
